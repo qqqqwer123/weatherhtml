@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        body {
+            background-image: url("paris1.jpg");
+            background-size: cover; /* 讓背景圖片覆蓋整個畫面 */
+            background-repeat: no-repeat; /* 防止背景圖片重複 */
+            background-position: center; /* 圖片置中 */
+            background-attachment: fixed; /* 固定背景，讓圖片隨著畫面固定不動 */
+        }
+    </style>
+
+    <title>Weather Web</title>
+    <style>
+        .container {
+            display: flex;
+
+        }
+        .left {
+        position: relative;
+        height: 200px;
+
+        }
+        .left .resize {
+        width: 850px;
+        resize: horizontal;
+        overflow: scroll;
+        height: inherit;
+        opacity: 0;
+        }
+        .resize::-webkit-scrollbar {
+        width: 200px;
+        height: inherit;
+        }
+        .left .bar-btn {
+        height: 200px;
+        width: 2px;
+        background: #666;
+        position: absolute;
+        right: 0;
+        top: 0;
+        }
+        .content {
+        position: absolute;
+        top: 0;
+        right: 5px;
+        bottom: 0;
+        left: 0;
+        overflow-x: hidden;
+        }
+        .right {
+        flex: 1 1 30px;
+        background: #FCFCFC99;
+        height: 300px;
+        }
+
+
+        /* 包裹圖片的容器 */
+        .image-container {
+            display: flex; /* 使圖片並排 */
+            justify-content: space-between; /* 使圖片之間有適當的間距 */
+            gap: 10px; /* 設定圖片之間的間距 */
+        }
+
+        /* 每個圖片的樣式 */
+        .image-item {
+            width: 300px; /* 設置圖片容器的寬度，使其與圖片保持一致 */
+            text-align: center; /* 使文字居中對齊 */
+        }
+
+        /* 圖片的最大寬度，避免圖片超出容器 */
+        .image-item img {
+            width: 100%; /* 使圖片根據容器大小縮放 */
+            height: auto; /* 保持圖片的比例 */
+        }
+
+        /* 文字段落的樣式，確保文字不會超出圖片寬度 */
+        .image-item p {
+            margin: 0; /* 移除段落的默認間距 */
+            padding: 0; /* 移除段落的默認內邊距 */
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>查詢天氣</title>
+</head>
+<body>
+
+    <h1>Welcome to Paris</h1>
+    
+    <h2>Let's take a trip to Paris.</h2>
+    <div style="background-color:#FCFCFC99;">
+    <p >Paris is the capital and largest city of France. With an official estimated population of 2,102,650 residents in January 2023 in an area of more than 105 km2 (41 sq mi),<br>
+        Paris is the fourth-largest city in the European Union and the 30th most densely populated city in the world in 2022. <br>
+        Since the 17th century, Paris has been one of the world's major centres of finance, diplomacy, commerce, culture, fashion, and gastronomy. <br>
+        For its leading role in the arts and sciences, as well as its early and extensive system of street lighting, in the 19th century, it became known as the City of Light.<br>
+        巴黎是法國的首都和最大城市。官方估計，2023 年 1 月巴黎面積超過 105 平方公里（41 平方英里）的居民人口為 2,102,650 人，<br>
+        是歐盟第四大城市，2022 年將成為全球人口稠密城市第 30 位。世界主要的金融、外交、商業、文化、時尚和美食中心之一。<br>
+        由於其在藝術和科學領域的領先地位，以及早期和廣泛的街道照明系統，在 19 世紀，它被稱為“光之城”。</p>
+    </div>
+    <div class="image-container">
+        <div class="image-item">
+            <img src="凱旋門.jpg" alt="凱旋門，法語：Arc de triomphe de l'Étoile" width="300" height="200">
+            <p>凱旋門，法語：Arc de triomphe de l'Étoile，位於法國巴黎十七區的戴高樂廣場中央，是拿破崙為紀念1805年奧斯特利茨戰役打敗俄奧聯軍，於1806年下令修建而成的。拿破崙被推翻後，凱旋門工程中途輟止。1830年波旁王朝被推翻後又重新復工，到1836年終於全部竣工。門上刻有法國大革命戰爭及拿破崙戰爭期間660名法國將領與158場戰役。</p>
+        </div>
+        <div class="image-item">
+            <img src="羅浮宮.jpg" alt="羅浮宮，法語：Palais de Louvre。" width="300" height="200">
+            <p>羅浮宮，法語：Palais de Louvre，位於法國巴黎市中心的塞納河邊，原是建於12世紀末至13世紀初的王宮，現在是一所綜合博物館，當前自1946年開始，羅浮宮除了在週二公休和特殊假日外，通常向遊客全面開放參觀，內部允許使用照相機和錄像機，但禁止使用閃光燈</p>
+        </div>
+        <div class="image-item">
+            <img src="塞納河.jpg" alt="塞納河，法法語：Seine" width="300" height="200">
+            <p>塞納河（法語：Seine，是流經巴黎市中心的法國第二大河，全長780公里，流域面積7.8萬平方公里，平均流量500立方公尺每秒（18,000立方英尺每秒）。跨越它的大橋有亞歷山大三世橋、新橋、藝術橋、阿爾馬橋、比爾哈凱姆橋、耶拿橋等。周杰倫的"告白氣球"就是在塞納河取景</p>
+        </div>
+        <div class="image-item">
+            <img src="艾菲爾鐵塔.jpg" alt="艾菲爾鐵塔，法語：Tour Eiffel" width="300" height="200">
+            <p>法語：Tour Eiffel，艾菲爾鐵塔是在1889年建立，天線高24公尺，總高324公尺。建造艾菲爾鐵塔的初衷是為了紀念法國大革命100周年和迎接在巴黎舉辦的國際博覽會。自1887年到1931年紐約帝國大廈落成前，保持了45年世界最高建築物的地位，目前仍是巴黎最有名的地標。
+                在建成之初，這座造型奇特的金屬龐然大物曾經引起法國人的反對。時光流逝，當年的反對之聲已經消散在歷史的塵囂中，如今的艾菲爾鐵塔是巴黎的絕對地標，法蘭西的驕傲。</p>
+        </div>
+    </div>
+    <p></p>
+        <div class="container">
+            <div class="left">
+                <div class="resize"></div>
+                <div class="bar-btn"></div>
+                <div class="content">
+                    <img src="rain.png" alt="Rain Icon" width="10%"><img src="sunny.png" alt="Sun Icon" width="10%"><img src="clouds.png" alt="Cloud Icon" width="10%"><img src="wind.png" alt="Cloud Icon" width="10%">
+                    <p></p>
+                    <button id="parisButton">查詢巴黎天氣</button>   
+                    <script>
+                        // 點擊不同城市按鈕時，傳送對應的經緯度
+                        document.getElementById("parisButton").addEventListener("click", async function() {
+                            const location = { lat: 48.8566, lon: 2.3522 };  // 巴黎的經緯度
+                            await getWeather(location);
+                        });
+                    
+                        // 發送 POST 請求到 Flask 伺服器
+                        async function getWeather(location) {
+                            try {
+                                const response = await fetch("http://127.0.0.1:5000/get_weather", {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/json"
+                                    },
+                                    body: JSON.stringify(location)  // 直接將經緯度傳送給後端
+                                });
+                    
+                                if (!response.ok) {
+                                    throw new Error('Failed to fetch weather data');
+                                }
+                    
+                                const data = await response.json();
+                                document.getElementById("weatherResult").textContent = `天氣數據: ${JSON.stringify(data.weather, null, 2)}`;
+                                document.getElementById("suggestionResult").textContent = `建議: ${data.suggestion}`;
+                                } catch (error) {
+                                    document.getElementById("weatherResult").textContent = "發生錯誤，無法查詢天氣。";
+                                    document.getElementById("suggestionResult").textContent = "";
+                                }
+                        }
+                    </script>
+                    <pre id="weatherResult"></pre>
+                    <pre id="suggestionResult"></pre>
+
+                    <style>
+                        /* 使建議區域在一定寬度內換行 */
+                        #suggestionResult {
+                            width: 100%;        /* 設置為100%的寬度，可以根據需求設置具體的寬度 */
+                            max-width: 200px;   /* 設置最大寬度 */
+                            word-wrap: break-word; /* 自動換行，避免文字超出區塊 */
+                            white-space: pre-wrap; /* 讓內容中的換行符顯示為換行 */
+                            margin: 20px 0;      /* 可根據需要調整間距 */
+                            border: 1px solid #ccc;  /* 設置邊框顯示區塊範圍 */
+                            padding: 10px;       /* 內邊距 */
+                        }
+                    </style>
+                </div>
+            </div>
+        <div class="right">
+            <p>
+                Trois allumettes une à une allumées dans la nuit<br>
+                La premiére pour voir ton visage tout entier<br>
+                La seconde pour voir tes yeux<br>
+                La dernière pour voir ta bouche<br>
+                Et l'obscuritè tout entière pour me rappeler tout cela<br>
+                En te serrant dans mes bras.<br>
+
+                (translation:<br>
+                Three matches one by one struck in the night<br>
+                The first to see your face in its entirety<br>
+                The second to see your eyes<br>
+                The last to see your mouth<br>
+                And the darkness all around to remind me of all these<br>
+                As I hold you in my arms.)
+            </p>
+        </div>  
+    </div>  
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/p6b4KgiWPVA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <p></p>
+    <audio controls>
+        <source src="Taylor_ Back To December (Lyrics).mp3" type="audio/mp3">
+        您的瀏覽器不支持音頻播放。
+    </audio>        
+
+
+    
+    </form>
+
+
+
+
+    
+    <h2>Click below to view more weather conditions:</h2>
+    <a href="https://weather.com/weather/tenday/l/1a8af5b9d8971c46dd5a52547f9221e22cd895d8d8639267a87df614d0912830">View 10 Days Weather in Paris</a>
+    
+    <h3>Website Design Ideas</h3>
+    <ul>
+        <li>Author: Coco</li>
+        <li>Include bottom for users to click and get the weather information back </li>
+        <li>Add images to introduce some attractions</li>
+        <li>Include a vlog to give users some actual vibe in Paris</li>
+        <li>Provide a poem, just want to put it, haha</li>
+    </ul>
+</body>
+</html>

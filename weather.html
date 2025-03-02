@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>查詢天氣</title>
+</head>
+<body>
+    <h1>輸入地點來查詢天氣</h1>
+    <form id="weatherForm">
+        <label for="location">地點:</label>
+        <input type="text" id="location" name="location" required>
+        <button type="submit">查詢</button>
+    </form>
+
+    <h2>天氣資訊</h2>
+    <pre id="result"></pre>
+
+    <script>
+        document.getElementById("weatherForm").addEventListener("submit", async function (e) {
+            e.preventDefault();  // 阻止表單的默認提交行為
+            
+            const location = document.getElementById("location").value;
+            
+            try {
+                const response = await fetch("http://127.0.0.1:5000/get_weather", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ location: location })
+                });
+                
+                const data = await response.json();
+                document.getElementById("result").textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                document.getElementById("result").textContent = "發生錯誤，無法查詢天氣。";
+            }
+        });
+    </script>
+</body>
+</html>
