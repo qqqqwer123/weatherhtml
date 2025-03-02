@@ -1,3 +1,4 @@
+#import
 from flask import Flask, request, jsonify
 import requests  # 用於發送HTTP請求
 from flask_cors import CORS
